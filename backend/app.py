@@ -16,7 +16,6 @@ CORS(app)
 
 recommender = ProductRecommender()
 
-# In-memory session store: {session_id: {"turns": int, "text": str, "budget": int, "category": str}}
 SESSIONS = {}
 
 CLARIFYING_QUESTIONS = [
@@ -57,8 +56,6 @@ def chat():
     if category:
         session["category"] = category
 
-    # Ask at most one clarifying question, only on the first turn, and only
-    # if we have neither a budget nor a clear enough query to retrieve well.
     if session["turns"] == 1 and not session["budget"]:
         question = CLARIFYING_QUESTIONS[0]
         return jsonify({
