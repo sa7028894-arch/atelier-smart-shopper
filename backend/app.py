@@ -80,9 +80,6 @@ def chat():
             "products": [],
         })
 
-    # Enhance with LLM-generated explanations if GROQ_API_KEY is configured.
-    # Falls back silently to the template-based reason already on each
-    # product if the LLM call fails or isn't configured.
     if llm_explainer.is_enabled():
         for product in results:
             llm_reason = llm_explainer.generate_explanation(
